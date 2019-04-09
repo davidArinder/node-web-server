@@ -3,15 +3,15 @@ const hbs = require('hbs');
 const fs = require('fs');
 
 const port = process.env.PORT || 3000;
-var app = express();
+const app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 //middleware to create log of when people use the site
 app.use((req, res, next) => {
-  var now = new Date().toString();
-  var log = `${now}: ${req.method} ${req.url}`;
+  const now = new Date().toString();
+  const log = `${now}: ${req.method} ${req.url}`;
 
   console.log(log);
   fs.appendFile('server.log', log + '\n', (err) => {
